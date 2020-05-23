@@ -3,7 +3,8 @@
 Plugin Name: Advanced noCaptcha & invisible Captcha
 Description: Show noCaptcha or invisible captcha in Comment Form, bbPress, BuddyPress, WooCommerce, CF7, Login, Register, Lost Password, Reset Password. Also can implement in any other form easily.
 Version: 1.0
-Author: Shamim Hasan Forked by Howard
+Author: Howard Ehrenberg
+GitHub Plugin URI: https://github.com/DuckDivers/duck-recaptcha-plugin
 Text Domain: advanced-nocaptcha-recaptcha
 License: GPLv2 or later
 WC tested up to: 4.0.1
@@ -22,7 +23,7 @@ class ANR {
 			if ( ! function_exists( 'deactivate_plugins' ) ) {
 				require_once ABSPATH . 'wp-admin/includes/plugin.php';
 			}
-			deactivate_plugins( 'advanced-nocaptcha-recaptcha/advanced-nocaptcha-recaptcha.php' );
+			deactivate_plugins( 'duck-recaptcha-plugin/duck-recaptcha-plugin.php' );
 			return;
 		}
 		$this->constants();
