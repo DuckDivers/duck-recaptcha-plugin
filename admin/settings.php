@@ -1,6 +1,6 @@
 <?php
 
-class ANR_Settings {
+class DD_RECAPTCHA_Settings {
 
 	private static $instance;
 
@@ -14,11 +14,11 @@ class ANR_Settings {
 	function actions_filters() {
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 		add_action( 'admin_init', array( $this, 'settings_save' ), 99 );
-		add_filter( 'plugin_action_links_' . plugin_basename( ANR_PLUGIN_FILE ), array( $this, 'add_settings_link' ) );
+		add_filter( 'plugin_action_links_' . plugin_basename( DD_RECAPTCHA_PLUGIN_FILE ), array( $this, 'add_settings_link' ) );
 		add_action('admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 
 		if ( is_multisite() ) {
-			$same_settings = apply_filters( 'anr_same_settings_for_all_sites', false );
+			$same_settings = apply_filters( 'dd_recaptcha_same_settings_for_all_sites', false );
 		} else {
 			$same_settings = false;
 		}
@@ -31,13 +31,13 @@ class ANR_Settings {
 	}
 	
 	function admin_enqueue_scripts() {
-		wp_register_script( 'anr-admin', ANR_PLUGIN_URL . 'assets/js/admin.js', array( 'jquery' ), ANR_PLUGIN_VERSION, true );
+		wp_register_script( 'dd-recaptcha-admin', DD_RECAPTCHA_PLUGIN_URL . 'assets/js/admin.js', array( 'jquery' ), DD_RECAPTCHA_PLUGIN_VERSION, true );
 	}
 
 	function admin_init() {
-		register_setting( 'anr_admin_options', 'anr_admin_options', array( $this, 'options_sanitize' ) );
+		register_setting( 'dd_recaptcha_admin_options', 'dd_recaptcha_admin_options', array( $this, 'options_sanitize' ) );
 		foreach ( $this->get_sections() as $section_id => $section ) {
-			add_settings_section( $section_id, $section['section_title'], ! empty( $section['section_callback'] ) ? $section['section_callback'] : null, 'anr_admin_options' );
+			add_settings_section( $section_id, $section['section_title'], ! empty( $section['section_callback'] ) ? $section['section_callback'] : null, 'dd_recaptcha_admin_options' );
 		}
 		foreach ( $this->get_fields() as $field_id => $field ) {
 			$args = wp_parse_args(
@@ -52,7 +52,7 @@ class ANR_Settings {
 					'std'        => '',
 				)
 			);
-			add_settings_field( $args['id'], $args['label'], ! empty( $args['callback'] ) ? $args['callback'] : array( $this, 'callback' ), 'anr_admin_options', $args['section_id'], $args );
+			add_settings_field( $args['id'], $args['label'], ! empty( $args['callback'] ) ? $args['callback'] : array( $this, 'callback' ), 'dd_recaptcha_admin_options', $args['section_id'], $args );
 		}
 	}
 
@@ -71,7 +71,7 @@ class ANR_Settings {
 				'section_title' => __( 'Other Settings', 'advanced-nocaptcha-recaptcha' ),
 			),
 		);
-		return apply_filters( 'anr_settings_sections', $sections );
+		return apply_filters( 'dd_recaptcha_settings_sections', $sections );
 	}
 
 	function get_fields() {
@@ -118,7 +118,7 @@ class ANR_Settings {
 					'bp_register'       => __( 'BuddyPress register', 'advanced-nocaptcha-recaptcha' ),
 					'wc_checkout'    => __( 'WooCommerce Checkout', 'advanced-nocaptcha-recaptcha' ),
 				),
-				'desc'       => sprintf( __( 'For other forms see <a href="%s">Instruction</a>', 'advanced-nocaptcha-recaptcha' ), esc_url( admin_url( 'admin.php?page=anr-instruction' ) ) ),
+				'desc'       => sprintf( __( 'For other forms see <a href="%s">Instruction</a>', 'advanced-nocaptcha-recaptcha' ), esc_url( admin_url( 'admin.php?page=dd-recaptcha-instruction' ) ) ),
 			),
 			'error_message'      => array(
 				'label'      => __( 'Error Message', 'advanced-nocaptcha-recaptcha' ),
@@ -184,7 +184,7 @@ class ANR_Settings {
 				'label'      => __( 'Theme', 'advanced-nocaptcha-recaptcha' ),
 				'section_id' => 'other',
 				'type'       => 'select',
-				'class'      => 'regular hidden anr-show-field-for-v2_checkbox anr-show-field-for-v2_invisible',
+				'class'      => 'regular hidden dd-recaptcha-show-field-for-v2_checkbox dd-recaptcha-show-field-for-v2_invisible',
 				'std'        => 'light',
 				'options'    => array(
 					'light' => __( 'Light', 'advanced-nocaptcha-recaptcha' ),
@@ -195,7 +195,7 @@ class ANR_Settings {
 				'label'      => __( 'Size', 'advanced-nocaptcha-recaptcha' ),
 				'section_id' => 'other',
 				'type'       => 'select',
-				'class'      => 'regular hidden anr-show-field-for-v2_checkbox',
+				'class'      => 'regular hidden dd-recaptcha-show-field-for-v2_checkbox',
 				'std'        => 'normal',
 				'options'    => array(
 					'normal'    => __( 'Normal', 'advanced-nocaptcha-recaptcha' ),
@@ -206,7 +206,7 @@ class ANR_Settings {
 				'label'      => __( 'Badge', 'advanced-nocaptcha-recaptcha' ),
 				'section_id' => 'other',
 				'type'       => 'select',
-				'class'      => 'regular hidden anr-show-field-for-v2_invisible',
+				'class'      => 'regular hidden dd-recaptcha-show-field-for-v2_invisible',
 				'std'        => 'bottomright',
 				'options'    => array(
 					'bottomright' => __( 'Bottom Right', 'advanced-nocaptcha-recaptcha' ),
@@ -228,7 +228,7 @@ class ANR_Settings {
 				'label'      => __( 'v3 Script Load', 'advanced-nocaptcha-recaptcha' ),
 				'section_id' => 'other',
 				'type'       => 'select',
-				'class'      => 'regular hidden anr-show-field-for-v3',
+				'class'      => 'regular hidden dd-recaptcha-show-field-for-v3',
 				'std'        => 'all_pages',
 				'options'    => array(
 					'all_pages'  => __( 'All Pages', 'advanced-nocaptcha-recaptcha' ),
@@ -240,7 +240,7 @@ class ANR_Settings {
 				'label'      => __( 'Captcha Score', 'advanced-nocaptcha-recaptcha' ),
 				'section_id' => 'other',
 				'type'       => 'select',
-				'class'      => 'regular hidden anr-show-field-for-v3',
+				'class'      => 'regular hidden dd-recaptcha-show-field-for-v3',
 				'std'        => '0.5',
 				'options'    => $score_values,
 				'desc'       => __( 'Higher means more sensitive', 'advanced-nocaptcha-recaptcha' ),
@@ -263,7 +263,7 @@ class ANR_Settings {
 				'label'      => __( 'Remove CSS', 'advanced-nocaptcha-recaptcha' ),
 				'section_id' => 'other',
 				'type'       => 'checkbox',
-				'class'      => 'checkbox hidden anr-show-field-for-v2_checkbox',
+				'class'      => 'checkbox hidden dd-recaptcha-show-field-for-v2_checkbox',
 				'cb_label'   => __( "Remove this plugin's css from login page?", 'advanced-nocaptcha-recaptcha' ),
 				'desc'       => __( 'This css increase login page width to adjust with Captcha width.', 'advanced-nocaptcha-recaptcha' ),
 			),
@@ -271,13 +271,13 @@ class ANR_Settings {
 				'label'      => __( 'No JS Captcha', 'advanced-nocaptcha-recaptcha' ),
 				'section_id' => 'other',
 				'type'       => 'checkbox',
-				'class'      => 'checkbox hidden anr-show-field-for-v2_checkbox',
+				'class'      => 'checkbox hidden dd-recaptcha-show-field-for-v2_checkbox',
 				'cb_label'   => __( 'Show captcha if javascript disabled?', 'advanced-nocaptcha-recaptcha' ),
 				'desc'       => __( 'If JavaScript is a requirement for your site, we advise that you do NOT check this.', 'advanced-nocaptcha-recaptcha' ),
 			),
 		);
 		
-		return apply_filters( 'anr_settings_fields', $fields );
+		return apply_filters( 'dd_recaptcha_settings_fields', $fields );
 	}
 
 	function callback( $field ) {
@@ -298,7 +298,7 @@ class ANR_Settings {
 			$attrib .= ' maxlength = "' . absint( $field['maxlength'] ) . '"';
 		}
 
-		$value = anr_get_option( $field['id'], $field['std'] );
+		$value = dd_recaptcha_get_option( $field['id'], $field['std'] );
 
 		switch ( $field['type'] ) {
 			case 'text':
@@ -308,7 +308,7 @@ class ANR_Settings {
 			case 'hidden':
 			case 'submit':
 				printf(
-					'<input type="%1$s" id="anr_admin_options_%2$s" class="%3$s" name="anr_admin_options[%4$s]" placeholder="%5$s" value="%6$s"%7$s />',
+					'<input type="%1$s" id="dd_recaptcha_admin_options_%2$s" class="%3$s" name="dd_recaptcha_admin_options[%4$s]" placeholder="%5$s" value="%6$s"%7$s />',
 					esc_attr( $field['type'] ),
 					esc_attr( $field['id'] ),
 					esc_attr( $field['class'] ),
@@ -319,7 +319,7 @@ class ANR_Settings {
 				);
 				break;
 			case 'textarea':
-					printf( '<textarea id="anr_admin_options_%1$s" class="%2$s" name="anr_admin_options[%3$s]" placeholder="%4$s" %5$s >%6$s</textarea>',
+					printf( '<textarea id="dd_recaptcha_admin_options_%1$s" class="%2$s" name="dd_recaptcha_admin_options[%3$s]" placeholder="%4$s" %5$s >%6$s</textarea>',
 						esc_attr( $field['id'] ),
 						esc_attr( $field['class'] ),
 						esc_attr( $field['id'] ),
@@ -329,9 +329,9 @@ class ANR_Settings {
 					);
 					break;
 			case 'checkbox':
-				printf( '<input type="hidden" name="anr_admin_options[%s]" value="" />', esc_attr( $field['id'] ) );
+				printf( '<input type="hidden" name="dd_recaptcha_admin_options[%s]" value="" />', esc_attr( $field['id'] ) );
 				printf(
-					'<label><input type="%1$s" id="anr_admin_options_%2$s" class="%3$s" name="anr_admin_options[%4$s]" value="%5$s"%6$s /> %7$s</label>',
+					'<label><input type="%1$s" id="dd_recaptcha_admin_options_%2$s" class="%3$s" name="dd_recaptcha_admin_options[%4$s]" value="%5$s"%6$s /> %7$s</label>',
 					'checkbox',
 					esc_attr( $field['id'] ),
 					esc_attr( $field['class'] ),
@@ -342,10 +342,10 @@ class ANR_Settings {
 				);
 				break;
 			case 'multicheck':
-				printf( '<input type="hidden" name="anr_admin_options[%s][]" value="" />', esc_attr( $field['id'] ) );
+				printf( '<input type="hidden" name="dd_recaptcha_admin_options[%s][]" value="" />', esc_attr( $field['id'] ) );
 				foreach ( $field['options'] as $key => $label ) {
 					printf(
-						'<label><input type="%1$s" id="anr_admin_options_%2$s_%5$s" class="%3$s" name="anr_admin_options[%4$s][]" value="%5$s"%6$s /> %7$s</label><br>',
+						'<label><input type="%1$s" id="dd_recaptcha_admin_options_%2$s_%5$s" class="%3$s" name="dd_recaptcha_admin_options[%4$s][]" value="%5$s"%6$s /> %7$s</label><br>',
 						'checkbox',
 						esc_attr( $field['id'] ),
 						esc_attr( $field['class'] ),
@@ -358,7 +358,7 @@ class ANR_Settings {
 				break;
 			case 'select':
 				printf(
-					'<select id="anr_admin_options_%1$s" class="%2$s" name="anr_admin_options[%1$s]">',
+					'<select id="dd_recaptcha_admin_options_%1$s" class="%2$s" name="dd_recaptcha_admin_options[%1$s]">',
 					esc_attr( $field['id'] ),
 					esc_attr( $field['class'] ),
 					esc_attr( $field['id'] )
@@ -401,28 +401,28 @@ class ANR_Settings {
 	}
 
 	function menu_page() {
-		add_options_page( __( 'Advanced noCaptcha & invisible captcha Settings', 'advanced-nocaptcha-recaptcha' ), __( 'Advanced noCaptcha & invisible captcha', 'advanced-nocaptcha-recaptcha' ), 'manage_options', 'anr-admin-settings', array( $this, 'admin_settings' ) );
-		add_submenu_page( 'anr-non-exist-menu', 'Advanced noCaptcha reCaptcha - ' . __( 'Instruction', 'advanced-nocaptcha-recaptcha' ), __( 'Instruction', 'advanced-nocaptcha-recaptcha' ), 'manage_options', 'anr-instruction', array( $this, 'instruction_page' ) );
+		add_options_page( __( 'Advanced noCaptcha & invisible captcha Settings', 'advanced-nocaptcha-recaptcha' ), __( 'Advanced noCaptcha & invisible captcha', 'advanced-nocaptcha-recaptcha' ), 'manage_options', 'dd-recaptcha-admin-settings', array( $this, 'admin_settings' ) );
+		add_submenu_page( 'dd-recaptcha-non-exist-menu', 'Advanced noCaptcha reCaptcha - ' . __( 'Instruction', 'advanced-nocaptcha-recaptcha' ), __( 'Instruction', 'advanced-nocaptcha-recaptcha' ), 'manage_options', 'dd-recaptcha-instruction', array( $this, 'instruction_page' ) );
 
 	}
 	
 	function settings_save() {
-		if ( current_user_can( 'manage_options' ) && isset( $_POST['anr_admin_options'] ) && isset( $_POST['action'] ) && 'update' === $_POST['action'] && isset( $_GET['page'] ) && 'anr-admin-settings' === $_GET['page'] ) {
-			check_admin_referer( 'anr_admin_options-options' );
+		if ( current_user_can( 'manage_options' ) && isset( $_POST['dd_recaptcha_admin_options'] ) && isset( $_POST['action'] ) && 'update' === $_POST['action'] && isset( $_GET['page'] ) && 'dd-recaptcha-admin-settings' === $_GET['page'] ) {
+			check_admin_referer( 'dd_recaptcha_admin_options-options' );
 
-			$value = wp_unslash( $_POST['anr_admin_options'] );
+			$value = wp_unslash( $_POST['dd_recaptcha_admin_options'] );
 			if ( ! is_array( $value ) ) {
 				$value = [];
 			}
-			anr_update_option( $value );
+			dd_recaptcha_update_option( $value );
 			
-			wp_safe_redirect( admin_url( 'options-general.php?page=anr-admin-settings&updated=true' ) );
+			wp_safe_redirect( admin_url( 'options-general.php?page=dd-recaptcha-admin-settings&updated=true' ) );
 			exit;
 		}
 	}
 
 	function admin_settings() {
-		wp_enqueue_script( 'anr-admin' );
+		wp_enqueue_script( 'dd-recaptcha-admin' );
 		?>
 		<div class="wrap">
 			<div id="poststuff">
@@ -430,12 +430,12 @@ class ANR_Settings {
 				<div id="post-body" class="metabox-holder columns-2">
 					<div id="post-body-content">
 						<div id="tab_container">
-							<?php settings_errors( 'anr_admin_options' ); ?>
-							<form method="post" action="<?php echo esc_attr( admin_url( 'options-general.php?page=anr-admin-settings' ) ); ?>">
+							<?php settings_errors( 'dd_recaptcha_admin_options' ); ?>
+							<form method="post" action="<?php echo esc_attr( admin_url( 'options-general.php?page=dd-recaptcha-admin-settings' ) ); ?>">
 								<?php
-								settings_fields( 'anr_admin_options' );
-								do_settings_sections( 'anr_admin_options' );
-								do_action( 'anr_admin_setting_form' );
+								settings_fields( 'dd_recaptcha_admin_options' );
+								do_settings_sections( 'dd_recaptcha_admin_options' );
+								do_action( 'dd_recaptcha_admin_setting_form' );
 								submit_button();
 								?>
 							</form>
@@ -459,21 +459,21 @@ class ANR_Settings {
 						<div class='postbox'>
 							<div class='inside'>
 								<div><?php printf( __( 'Get your site key and secret key from <a href="%s" target="_blank">GOOGLE</a> if you do not have already.', 'advanced-nocaptcha-recaptcha' ), esc_url( 'https://www.google.com/recaptcha/admin' ) ); ?></div>
-								<div><?php printf( __( 'Goto %s page of this plugin and set up as you need. and ENJOY...', 'advanced-nocaptcha-recaptcha' ), '<a href="' . esc_url( admin_url( 'options-general.php?page=anr-admin-settings' ) ) . '">' . esc_html__( 'Settings', 'advanced-nocaptcha-recaptcha' ) . '</a>' ); ?></div>
+								<div><?php printf( __( 'Goto %s page of this plugin and set up as you need. and ENJOY...', 'advanced-nocaptcha-recaptcha' ), '<a href="' . esc_url( admin_url( 'options-general.php?page=dd-recaptcha-admin-settings' ) ) . '">' . esc_html__( 'Settings', 'advanced-nocaptcha-recaptcha' ) . '</a>' ); ?></div>
 				
 								<h3><?php _e( 'Implement noCaptcha in Contact Form 7', 'advanced-nocaptcha-recaptcha' ); ?></h3>
-								<div><?php printf( __( 'To show noCaptcha use %s', 'advanced-nocaptcha-recaptcha' ), '<code>[anr_nocaptcha g-recaptcha-response]</code>' ); ?></div>
+								<div><?php printf( __( 'To show noCaptcha use %s', 'advanced-nocaptcha-recaptcha' ), '<code>[dd_recaptcha_nocaptcha g-recaptcha-response]</code>' ); ?></div>
 				
 								<h3><?php _e( 'Implement noCaptcha in WooCommerce', 'advanced-nocaptcha-recaptcha' ); ?></h3>
 								<div><?php _e( 'If Login Form, Registration Form, Lost Password Form, Reset Password Form is selected in SETTINGS page of this plugin they will show and verify Captcha in WooCommerce respective forms also.', 'advanced-nocaptcha-recaptcha' ); ?></div>
 								
 								<h3><?php _e( 'If you want to implement noCaptcha in any other custom form', 'advanced-nocaptcha-recaptcha' ); ?></h3>
-								<div><?php printf( __( 'To show noCaptcha in a form use %1$s OR %2$s', 'advanced-nocaptcha-recaptcha' ), "<code>do_action( 'anr_captcha_form_field' )</code>", '<code>[anr-captcha]</code>' ); ?></div>
-								<div><?php printf( __( 'To verify use %s. It will return true on success otherwise false.', 'advanced-nocaptcha-recaptcha' ), '<code>anr_verify_captcha()</code>' ); ?></div>
+								<div><?php printf( __( 'To show noCaptcha in a form use %1$s OR %2$s', 'advanced-nocaptcha-recaptcha' ), "<code>do_action( 'dd_recaptcha_captcha_form_field' )</code>", '<code>[dd-recaptcha-captcha]</code>' ); ?></div>
+								<div><?php printf( __( 'To verify use %s. It will return true on success otherwise false.', 'advanced-nocaptcha-recaptcha' ), '<code>dd_recaptcha_verify_captcha()</code>' ); ?></div>
 								<div><?php printf( __( 'For paid support pleasse visit <a href="%s" target="_blank">Advanced noCaptcha reCaptcha</a>', 'advanced-nocaptcha-recaptcha' ), esc_url( 'https://www.shamimsplugins.com/hire/' ) ); ?></div>
 							</div>
 						</div>
-						<div><a class="button" href="<?php echo esc_url( admin_url( 'options-general.php?page=anr-admin-settings' ) ); ?>"><?php esc_html_e( 'Back to Settings', 'advanced-nocaptcha-recaptcha' ); ?></a></div>
+						<div><a class="button" href="<?php echo esc_url( admin_url( 'options-general.php?page=dd-recaptcha-admin-settings' ) ); ?>"><?php esc_html_e( 'Back to Settings', 'advanced-nocaptcha-recaptcha' ); ?></a></div>
                     </div>
 				</div>
 				<br class="clear" />
@@ -485,7 +485,7 @@ class ANR_Settings {
 
 	function add_settings_link( $links ) {
 		// add settings link in plugins page
-		$settings_link = '<a href="' . admin_url( 'options-general.php?page=anr-admin-settings' ) . '">' . __( 'Settings', 'advanced-nocaptcha-recaptcha' ) . '</a>';
+		$settings_link = '<a href="' . admin_url( 'options-general.php?page=dd-recaptcha-admin-settings' ) . '">' . __( 'Settings', 'advanced-nocaptcha-recaptcha' ) . '</a>';
 		array_unshift( $links, $settings_link );
 		return $links;
 	}
@@ -493,4 +493,4 @@ class ANR_Settings {
 
 } //END CLASS
 
-add_action( 'wp_loaded', array( ANR_Settings::init(), 'actions_filters' ) );
+add_action( 'wp_loaded', array( DD_RECAPTCHA_Settings::init(), 'actions_filters' ) );

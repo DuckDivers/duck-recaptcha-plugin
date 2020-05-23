@@ -10,10 +10,10 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-function anr_uninstall_plugin() {
+function dd_recaptcha_uninstall_plugin() {
 	global $wpdb;
 
-	$post_id = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_type = 'anr-post' LIMIT 1" );
+	$post_id = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_type = 'ddr-post' LIMIT 1" );
 
 	if ( $post_id ) {
 		// There may have too many post meta. delete them first in one query.
@@ -23,5 +23,5 @@ function anr_uninstall_plugin() {
 	}
 }
 
-anr_uninstall_plugin();
+dd_recaptcha_uninstall_plugin();
 

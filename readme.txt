@@ -69,7 +69,7 @@ Loading v3 script in All Pages help google for analytics. If you want to load sc
 If you are not using v3 then script will only load when there is form in that page. no settings required.
 
 = How to set captcha in contact form 7? =
-To show noCaptcha use [anr_nocaptcha g-recaptcha-response]
+To show noCaptcha use [dd_recaptcha_nocaptcha g-recaptcha-response]
 
 = How to login if i am locked out? =
 You can access your file via FTP or file manager and rename "advanced-nocaptcha-recaptcha" folder to something else. Then login as normal. Then rename back this folder.

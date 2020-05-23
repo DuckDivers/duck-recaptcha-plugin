@@ -14,12 +14,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-class ANR {
+class DD_RECAPTCHA {
 
 	private static $instance;
 
 	private function __construct() {
-		if ( function_exists( 'anr_get_option' ) ) {
+		if ( function_exists( 'dd_recaptcha_get_option' ) ) {
 			if ( ! function_exists( 'deactivate_plugins' ) ) {
 				require_once ABSPATH . 'wp-admin/includes/plugin.php';
 			}
@@ -40,21 +40,21 @@ class ANR {
 	}
 
 	private function constants() {
-		define( 'ANR_PLUGIN_VERSION', '1.0.0' );
-		define( 'ANR_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-		define( 'ANR_PLUGIN_URL', plugins_url( '/', __FILE__ ) );
-		define( 'ANR_PLUGIN_FILE', __FILE__ );
+		define( 'DD_RECAPTCHA_PLUGIN_VERSION', '1.0.0' );
+		define( 'DD_RECAPTCHA_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+		define( 'DD_RECAPTCHA_PLUGIN_URL', plugins_url( '/', __FILE__ ) );
+		define( 'DD_RECAPTCHA_PLUGIN_FILE', __FILE__ );
 	}
 
 	private function includes() {
-		require_once ANR_PLUGIN_DIR . 'functions.php';
+		require_once DD_RECAPTCHA_PLUGIN_DIR . 'functions.php';
 	}
 
 	private function actions() {
-		add_action( 'after_setup_theme', 'anr_include_require_files' );
-		add_action( 'init', 'anr_translation' );
-		add_action( 'login_enqueue_scripts', 'anr_login_enqueue_scripts' );
+		add_action( 'after_setup_theme', 'dd_recaptcha_include_require_files' );
+		//add_action( 'init', 'dd_recaptcha_translation' );
+		add_action( 'login_enqueue_scripts', 'dd_recaptcha_login_enqueue_scripts' );
 	}
 } //END Class
 
-ANR::init();
+DD_RECAPTCHA::init();
