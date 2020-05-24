@@ -88,11 +88,11 @@ if ( ! class_exists( 'dd_recaptcha_class' ) ) {
 				if ( ! is_array( $cf7_option ) || empty( $cf7_option['recaptcha'] ) ) {
 					remove_filter( 'wpcf7_form_hidden_fields', 'wpcf7_recaptcha_add_hidden_fields', 100, 1 );
 				}
-				wpcf7_add_form_tag( 'dd_recaptcha_nocaptcha', array( $this, 'wpcf7_form_field' ), array( 'name-attr' => true ) );
-				add_filter( 'wpcf7_validate_dd_recaptcha_nocaptcha', array( $this, 'wpcf7_verify' ), 10, 2 );
+				wpcf7_add_form_tag( 'dd_recaptcha', array( $this, 'wpcf7_form_field' ), array( 'name-attr' => true ) );
+				add_filter( 'wpcf7_validate_dd_recaptcha', array( $this, 'wpcf7_verify' ), 10, 2 );
 			} elseif ( function_exists( 'wpcf7_add_shortcode' ) ) {
-				wpcf7_add_shortcode( 'dd_recaptcha_nocaptcha', array( $this, 'wpcf7_form_field' ), true );
-				add_filter( 'wpcf7_validate_dd_recaptcha_nocaptcha', array( $this, 'wpcf7_verify' ), 10, 2 );
+				wpcf7_add_shortcode( 'dd_recaptcha', array( $this, 'wpcf7_form_field' ), true );
+				add_filter( 'wpcf7_validate_dd_recaptcha', array( $this, 'wpcf7_verify' ), 10, 2 );
 			}
 
 			if ( dd_recaptcha_is_form_enabled( 'bbp_new' ) ) {
@@ -110,7 +110,7 @@ if ( ! class_exists( 'dd_recaptcha_class' ) ) {
 			if ( false === $mgs ) {
 				$mgs = dd_recaptcha_get_option( 'error_message', '' );
 			}
-			return '<strong>' . __( 'ERROR', 'advanced-nocaptcha-recaptcha' ) . '</strong>: ' . $mgs;
+			return '<strong>' . __( 'ERROR', 'duck-recaptcha-plugin' ) . '</strong>: ' . $mgs;
 		}
 
 		function total_captcha() {

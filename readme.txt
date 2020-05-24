@@ -3,7 +3,7 @@ Contributors: thehowarde
 Tags: recaptcha,nocaptcha,invisible,bot,spam,captcha,woocommerce,widget,plugin,comments,google,bbpress
 Requires at least: 4.4
 Tested up to: 5.4
-Stable tag: 1.0
+Stable tag: 1.0.1
 Requires PHP: 5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -48,7 +48,7 @@ Show noCaptcha or invisible captcha in Comment Form (after Comment textarea befo
 = Privacy Notices =
 
 * This plugin send IP address go Google for captcha verification. Please read [Google Privacy Policy](https://policies.google.com/).
-* If you set "Show login Captcha after how many failed attempts" to more than 0(zero) then user hash from ip address will be stored in database. After successful login, hash of that ip address will be deleted. 
+* If you set "Show login Captcha after how many failed attempts" to more than 0(zero) then user hash from ip address will be stored in database. After successful login, hash of that ip address will be deleted.
 
 == Installation ==
 1. Upload "advanced-nocaptcha-recaptcha" to the "/wp-content/plugins/" directory.

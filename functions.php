@@ -28,7 +28,7 @@ function dd_recaptcha_plugin_update_32( $prev_version ) {
 		if ( ! $options || ! is_array( $options ) ) {
 			return;
 		}
-		$options['error_message'] = str_replace( __( '<strong>ERROR</strong>: ', 'advanced-nocaptcha-recaptcha' ), '', dd_recaptcha_get_option( 'error_message' ) );
+		$options['error_message'] = str_replace( __( '<strong>ERROR</strong>: ', 'duck-recaptcha-plugin' ), '', dd_recaptcha_get_option( 'error_message' ) );
 
 		$enabled_forms = [];
 		if ( ! empty( $options['login'] ) ) {
@@ -141,7 +141,7 @@ function dd_recaptcha_is_form_enabled( $form ) {
 
 function dd_recaptcha_translation() {
 	// SETUP TEXT DOMAIN FOR TRANSLATIONS
-	load_plugin_textdomain( 'advanced-nocaptcha-recaptcha', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	load_plugin_textdomain( 'duck-recaptcha-plugin', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
 
 function dd_recaptcha_login_enqueue_scripts() {

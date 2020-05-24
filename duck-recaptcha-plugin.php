@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Advanced noCaptcha & invisible Captcha
+Plugin Name: Google reCAPTCHA for WordPress
 Description: Show noCaptcha or invisible captcha in Comment Form, bbPress, BuddyPress, WooCommerce, CF7, Login, Register, Lost Password, Reset Password. Also can implement in any other form easily.
-Version: 1.0
+Version: 1.0.1
 Author: Howard Ehrenberg
 GitHub Plugin URI: https://github.com/DuckDivers/duck-recaptcha-plugin
 Text Domain: advanced-nocaptcha-recaptcha
@@ -40,7 +40,7 @@ class DD_RECAPTCHA {
 	}
 
 	private function constants() {
-		define( 'DD_RECAPTCHA_PLUGIN_VERSION', '1.0.0' );
+		define( 'DD_RECAPTCHA_PLUGIN_VERSION', '1.0.1' );
 		define( 'DD_RECAPTCHA_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 		define( 'DD_RECAPTCHA_PLUGIN_URL', plugins_url( '/', __FILE__ ) );
 		define( 'DD_RECAPTCHA_PLUGIN_FILE', __FILE__ );
