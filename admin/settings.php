@@ -118,7 +118,7 @@ class DD_RECAPTCHA_Settings {
 					'bp_register'       => __( 'BuddyPress register', 'duck-recaptcha-plugin' ),
 					'wc_checkout'    => __( 'WooCommerce Checkout', 'duck-recaptcha-plugin' ),
 				),
-				'desc'       => sprintf( __( 'For other forms see <a href="%s">Instruction</a>', 'duck-recaptcha-plugin' ), esc_url( admin_url( 'admin.php?page=dd-recaptcha-instruction' ) ) ),
+				'desc'       => sprintf( __( 'For other forms see <a href="%s">Instructions</a>', 'duck-recaptcha-plugin' ), esc_url( admin_url( 'admin.php?page=dd-recaptcha-instruction' ) ) ),
 			),
 			'error_message'      => array(
 				'label'      => __( 'Error Message', 'duck-recaptcha-plugin' ),
@@ -462,7 +462,7 @@ class DD_RECAPTCHA_Settings {
 								<div><?php printf( __( 'Goto %s page of this plugin and set up as you need. and ENJOY...', 'duck-recaptcha-plugin' ), '<a href="' . esc_url( admin_url( 'options-general.php?page=dd-recaptcha-admin-settings' ) ) . '">' . esc_html__( 'Settings', 'duck-recaptcha-plugin' ) . '</a>' ); ?></div>
 
 								<h3><?php _e( 'Implement noCaptcha in Contact Form 7', 'duck-recaptcha-plugin' ); ?></h3>
-								<div><?php printf( __( 'To show noCaptcha use %s', 'duck-recaptcha-plugin' ), '<code>[dd_recaptcha_nocaptcha g-recaptcha-response]</code>' ); ?></div>
+								<div><?php printf( __( 'To show noCaptcha use %s', 'duck-recaptcha-plugin' ), '<code>[dd_recaptcha g-recaptcha-response]</code>' ); ?></div>
 
 								<h3><?php _e( 'Implement noCaptcha in WooCommerce', 'duck-recaptcha-plugin' ); ?></h3>
 								<div><?php _e( 'If Login Form, Registration Form, Lost Password Form, Reset Password Form is selected in SETTINGS page of this plugin they will show and verify Captcha in WooCommerce respective forms also.', 'duck-recaptcha-plugin' ); ?></div>

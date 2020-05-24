@@ -83,6 +83,6 @@ You can access your file via FTP or file manager and rename "advanced-nocaptcha-
 5. Captcha in Register Form
 6. Captcha in Lost Password Form
 7. Advanced noCaptcha reCaptcha Settings
-8. Advanced noCaptcha reCaptcha Setup Instruction
+8. Advanced noCaptcha reCaptcha Setup Instructions
 
 == Changelog ==
