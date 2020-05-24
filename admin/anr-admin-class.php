@@ -205,8 +205,8 @@ if (!class_exists('dd_recaptcha_admin_class'))
 		  do_action('dd_recaptcha_admin_setting_form');
 
 		  echo "<tr><td colspan='2'><label><input type='checkbox' name='loggedin_hide' value='1' ".checked(dd_recaptcha_get_option('loggedin_hide'), '1', false)." /> ".__("Hide Captcha for logged in users?", 'duck-recaptcha-plugin')."</label></td></tr>
-		  <tr><td colspan='2'><label><input type='checkbox' name='remove_css' value='1' ".checked(dd_recaptcha_get_option('remove_css'), '1', false)." /> ".__("Remove this plugin's css from login page?", 'duck-recaptcha-plugin')."<br/><small>".__("This css increase login page width to adjust with Captcha width.", 'duck-recaptcha-plugin')."</small></label></td></tr>
 		  <tr><td colspan='2'><label><input type='checkbox' name='no_js' value='1' ".checked(dd_recaptcha_get_option('no_js'), '1', false)." /> ".__("Show captcha if javascript disabled?", 'duck-recaptcha-plugin')."<br/><small>".__("If JavaScript is a requirement for your site, we advise that you do NOT check this.", 'duck-recaptcha-plugin')."</small></label></td></tr>
+      <tr><td colspan='2'><label><input type='checkbox' name='remove_css' value='1' ".checked(dd_recaptcha_get_option('remove_css'), '1', false)." /> ".__("Remove this plugin's css from login page?", 'duck-recaptcha-plugin')."<br/><small>".__("This css increases the login page width to adjust for the reCaptcha width.", 'duck-recaptcha-plugin')."</small></label></td></tr>
 		  <tr><td colspan='2'><span><input class='button-primary' type='submit' name='dd-recaptcha-admin-settings-submit' value='".__("Save Options", 'duck-recaptcha-plugin')."' /></span></td><td><input type='hidden' name='token' value='$token' /></td></tr>
 		  </table>
 		  </form>
