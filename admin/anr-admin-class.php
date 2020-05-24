@@ -50,8 +50,8 @@ if (!class_exists('dd_recaptcha_admin_class'))
 	function admin_settings()
 	{
 	  $token = wp_create_nonce( 'dd-recaptcha-admin-settings' );
-	  $url = 'https://www.shamimsplugins.com/contact-us/';
-	  $ReviewURL = 'https://wordpress.org/support/plugin/advanced-nocaptcha-recaptcha/reviews/?filter=5#new-post';
+	  $url = 'https://www.duckdiverllc.com/contact-us/';
+	  $ReviewURL = 'https://www.github.com/DuckDivers/';
 	  echo "<style>
 			input[type='text'], textarea, select {
 				width: 100%;
@@ -300,7 +300,7 @@ function dd_recaptcha_admin_sidebar()
 		  <h3>".__("If you want to implement noCaptcha in any other custom form", 'duck-recaptcha-plugin')."</h3><br />
 		  <li>".__("To show form field use ", 'duck-recaptcha-plugin')."<code>do_action( 'dd_recaptcha_captcha_form_field' )</code></li>
 		  <li>".__("To verify use ", 'duck-recaptcha-plugin')."<code>dd_recaptcha_verify_captcha()</code> it will return true on success otherwise false</li><br />
-		  <li>".sprintf(__("For paid support pleasse visit <a href='%s' target='_blank'>Advanced noCaptcha reCaptcha</a>", 'duck-recaptcha-plugin'),esc_url($url))."</li>
+		  <li>".sprintf(__("For paid support pleasse visit <a href='%s' target='_blank'>Duck Diver Marketing</a>", 'duck-recaptcha-plugin'),esc_url($url))."</li>
 		  </ul></p></div></div></div>
 		  ". $this->dd_recaptcha_admin_sidebar(). "
 		  </div></div>";
