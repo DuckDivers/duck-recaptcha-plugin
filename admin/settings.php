@@ -123,7 +123,8 @@ class DD_RECAPTCHA_Settings {
 			'error_message'      => array(
 				'label'      => __( 'Error Message', 'duck-recaptcha-plugin' ),
 				'section_id' => 'other',
-				'std'        => __( 'Please solve Captcha correctly', 'duck-recaptcha-plugin' ),
+				'std'        => __( 'Please solve reCaptcha', 'duck-recaptcha-plugin' ),
+				'std'        => __( 'Please solve reCaptcha', 'duck-recaptcha-plugin' ),
 			),
 			'language'           => array(
 				'label'      => __( 'Captcha Language', 'duck-recaptcha-plugin' ),
